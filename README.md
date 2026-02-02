@@ -1,6 +1,6 @@
 # Subtitles Generator
 
-This program automatically creates subtitle files (`.srt`) from video or audio files. It uses the Whisper model to generate the text using specifically the CPU.
+This program automatically creates subtitle files (`.srt`) from video or audio files. It uses the Whisper model to generate the text.
 
 ---
 
@@ -55,7 +55,7 @@ The program's settings can be changed by editing the `CONFIG.json` file. This fi
 
 A black window will appear. This is normal.
 
-- **First Time Use:** The first time the program runs, it will download the AI model. This can take a few minutes.
+- **First Time Use:** The first time the program runs, it will download the transcription model. This can take a few minutes.
 - **During Processing:** The program will start processing the files. The computer's fan may become loud. This is also normal. The process can take a long time, depending on the length of the media files.
 
 ### Step 4: Find The Subtitle Files
