@@ -1,0 +1,8 @@
+{
+  "language": "en",
+  "model_size": "small",
+  "device": "cpu",
+  "max_chars_per_line": 40,
+  "output_format": "srt",
+  "input_extensions": [".mp4", ".mov", ".wav", ".m4a"]
+}
