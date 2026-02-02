@@ -1,6 +1,6 @@
 {
   "language": "en",
-  "model_size": "small",
+  "model_size": "large",
   "device": "cpu",
   "max_chars_per_line": 40,
   "output_format": "srt",

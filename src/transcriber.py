@@ -19,7 +19,7 @@ def transcribe_audio(
     """
     # Announcing the model download for the first run.
     print("Loading the transcription model...")
-    print("If this is the first run, it will download the model files. This may take a few minutes.")
+    print("If this is the first run, it will download the transcription model files. \nThis may take a few minutes.")
 
     # Loading the transcription model.
     model = WhisperModel(config["model_size"], device=config["device"], compute_type="int8")
@@ -44,7 +44,7 @@ def transcribe_audio(
     audio.export(temp_audio_path, format="wav")
 
     # Transcribing the audio file.
-    print(f"Transcribing {os.path.basename(input_path)}... This may take a while.")
+    print(f"Transcribing '{os.path.basename(input_path)}' from 'input_files' folder... \nThis may take a while.")
     segments, _ = model.transcribe(
         temp_audio_path,
         language=config["language"],
@@ -72,4 +72,4 @@ def transcribe_audio(
     # Removing the temporary audio file.
     os.remove(temp_audio_path)
 
-    print(f"Subtitle file saved to {output_path}")
+    print(f"Subtitle file saved to '{output_path}' at 'output_files' folder.")
