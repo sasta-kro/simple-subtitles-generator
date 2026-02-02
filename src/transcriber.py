@@ -1,6 +1,7 @@
 from faster_whisper import WhisperModel
 from pydub import AudioSegment
 import os
+import platform
 from .utils import format_timestamp
 
 def transcribe_audio(
@@ -23,12 +24,20 @@ def transcribe_audio(
     # Loading the transcription model.
     model = WhisperModel(config["model_size"], device=config["device"], compute_type="int8")
 
+    # Setting the ffmpeg/ffprobe paths based on the operating system.
+    if platform.system() == "Windows":
+        ffmpeg_path = os.path.join("tools", "ffmpeg.exe")
+        ffprobe_path = os.path.join("tools", "ffprobe.exe")
+    else:
+        # Assuming ffmpeg and ffprobe are in the system's PATH for macOS/Linux.
+        ffmpeg_path = "ffmpeg"
+        ffprobe_path = "ffprobe"
+
     # Extracting audio from the input file.
-    # The ffmpeg and ffprobe executables are expected to be in the 'tools' directory.
     audio = AudioSegment.from_file(
         input_path,
-        ffmpeg=os.path.join("tools", "ffmpeg.exe"),
-        ffprobe=os.path.join("tools", "ffprobe.exe"),
+        ffmpeg=ffmpeg_path,
+        ffprobe=ffprobe_path,
     )
     # The audio is exported to a temporary mono WAV file for transcription.
     temp_audio_path = "temp_audio.wav"
@@ -39,20 +48,22 @@ def transcribe_audio(
     segments, _ = model.transcribe(
         temp_audio_path,
         language=config["language"],
-        word_timestamps=True,
+        word_timestamps=False, # Using segment-level timestamps is more readable.
     )
 
-    # Generating the subtitle file content.
+    # Generating the subtitle file content from segments.
     srt_content = ""
     segment_id = 1
     for segment in segments:
-        for word in segment.words:
-            start_time = format_timestamp(word.start)
-            end_time = format_timestamp(word.end)
-            srt_content += f"{segment_id}\n"
-            srt_content += f"{start_time} --> {end_time}\n"
-            srt_content += f"{word.word.strip()}\n\n"
-            segment_id += 1
+        start_time = format_timestamp(segment.start)
+        end_time = format_timestamp(segment.end)
+        text = segment.text.strip()
+        
+        # Creating a subtitle block for the entire segment.
+        srt_content += f"{segment_id}\n"
+        srt_content += f"{start_time} --> {end_time}\n"
+        srt_content += f"{text}\n\n"
+        segment_id += 1
 
     # Writing the subtitle file.
     with open(output_path, "w", encoding="utf-8") as f:
