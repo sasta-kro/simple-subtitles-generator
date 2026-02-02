@@ -1,21 +1,39 @@
 @echo off
+setlocal
 
-REM # This script checks for a Python virtual environment and creates it if it doesn't exist.
-REM # It then installs the required dependencies and runs the main Python script.
+REM --- CONFIGURATION ---
+set "RUNTIME=python_runtime_windows\python.exe"
+set "PIP=python_runtime_windows\Scripts\pip.exe"
+REM ---------------------
 
-REM # Checking if the venv directory exists.
-IF NOT EXIST .venv (
-    echo "First time setup detected. Installing dependencies..."
-    python -m venv .venv
-    CALL .venv\Scripts\activate.bat
-    pip install -r requirements.txt
-) ELSE (
-    CALL .venv\Scripts\activate.bat
+echo ===================================================
+echo   Subtitle Generator (Self-Contained)
+echo ===================================================
+
+REM 1. Check if we have PIP installed in our local runtime
+IF NOT EXIST "%PIP%" (
+    echo [INFO] Installing Pip for local Python...
+
+    REM Download get-pip.py to a temp file
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+    REM Install pip using our local python
+    "%RUNTIME%" get-pip.py --no-warn-script-location
+
+    REM Delete the installer
+    del get-pip.py
 )
 
-REM # Running the main script.
-echo "Starting the subtitle generation process..."
-python main.py
+REM 2. Install Dependencies (Using our local pip)
+echo [INFO] Checking dependencies...
+"%RUNTIME%" -m pip install -r requirements.txt --no-warn-script-location
 
-REM # Pausing to keep the window open.
+REM 3. Run the App
+echo [INFO] Starting the generator...
+"%RUNTIME%" main.py
+
+echo.
+echo ===================================================
+echo   Process Finished.
+echo ===================================================
 pause
