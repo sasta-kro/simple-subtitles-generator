@@ -2,7 +2,7 @@ from faster_whisper import WhisperModel
 import os
 import platform
 import subprocess
-from .utils import format_timestamp
+from src.utils import format_timestamp
 
 def transcribe_audio(
     input_path: str,
