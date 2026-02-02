@@ -7,10 +7,10 @@ REM # Checking if the venv directory exists.
 IF NOT EXIST .venv (
     echo "First time setup detected. Installing dependencies..."
     python -m venv .venv
-    CALL .venv\\Scripts\\activate.bat
+    CALL .venv\Scripts\activate.bat
     pip install -r requirements.txt
 ) ELSE (
-    CALL .venv\\Scripts\\activate.bat
+    CALL .venv\Scripts\activate.bat
 )
 
 REM # Running the main script.
