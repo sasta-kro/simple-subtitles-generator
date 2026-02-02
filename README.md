@@ -1,6 +1,6 @@
 # Subtitles Generator
 
-This program automatically creates subtitle files (`.srt`) from video or audio files. It uses the Whisper AI model to generate the text.
+This program automatically creates subtitle files (`.srt`) from video or audio files. It uses the Whisper model to generate the text using specifically the CPU.
 
 ---
 
