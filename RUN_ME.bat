@@ -28,7 +28,10 @@ REM 2. Install Dependencies (Using our local pip)
 echo [INFO] Checking dependencies...
 "%RUNTIME%" -m pip install -r requirements.txt --no-warn-script-location
 
-REM 3. Run the App
+REM 3. Set the PYTHONPATH to the current directory to ensure 'src' is found.
+set "PYTHONPATH=%CD%"
+
+REM 4. Run the App
 echo [INFO] Starting the generator...
 "%RUNTIME%" main.py
 
