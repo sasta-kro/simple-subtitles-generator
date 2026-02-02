@@ -38,15 +38,15 @@ The program's settings can be changed by editing the `CONFIG.json` file. This fi
 
 **Explanation of Settings:**
 
-*   **`"model_size"`**: This controls the quality and speed.
-    *   `"small"`: Faster, good quality. (Recommended)
-    *   `"medium"`: Slower, slightly better quality. The computer may become very slow when using this.
-    *   `"base"`: Fastest, but lower quality.
-    * `"large"` or `"turbo"` : not recommended for normal machines. Only try this if a lot of time can be spared as this will be painfully slow with a normal CPU.
+- **`"model_size"`**: This controls the quality and speed.
+    - `"small"`: Faster, good quality. (Recommended)
+    - `"medium"`: Slower, slightly better quality. The computer may become very slow when using this.
+    - `"base"`: Fastest, but lower quality.
+    - `"large"` or `"turbo"` : not recommended for normal machines. Only try this if a lot of time can be spared as this will be painfully slow with a normal CPU.
 
-*   **`"language"`**: The language spoken in the media file. `"en"` is for English. (not sure about support for other languages)
+- **`"language"`**: The language spoken in the media file. `"en"` is for English. (not sure about support for other languages)
 
-*   **`"output_format"`**: The format of the subtitle file. `"srt"` is a standard format that works with most video editors like DaVinci Resolve. Only `.srt` format is supported for now.
+- **`"output_format"`**: The format of the subtitle file. `"srt"` is a standard format that works with most video editors like DaVinci Resolve. Only `.srt` format is supported for now.
 
 ### Step 3: Run the Program
 
@@ -55,8 +55,8 @@ The program's settings can be changed by editing the `CONFIG.json` file. This fi
 
 A black window will appear. This is normal.
 
-*   **First Time Use:** The first time the program runs, it will download the AI model. This can take a few minutes.
-*   **During Processing:** The program will start processing the files. The computer's fan may become loud. This is also normal. The process can take a long time, depending on the length of the media files.
+- **First Time Use:** The first time the program runs, it will download the AI model. This can take a few minutes.
+- **During Processing:** The program will start processing the files. The computer's fan may become loud. This is also normal. The process can take a long time, depending on the length of the media files.
 
 ### Step 4: Find The Subtitle Files
 
@@ -93,12 +93,12 @@ This program assumes `ffmpeg` is installed in the system. If it is not installed
 
 ### Features
 
-*   **Automatic Transcription:** Transcribes audio from various video/audio formats into text.
-*   **Subtitle Generation:** Creates `.srt` subtitle files with accurate timestamps.
-*   **CPU Optimized:** Uses `faster-whisper` with `int8` quantization for efficient performance on standard CPUs.
-*   **Cross-Platform:** Designed to run on both Windows and macOS.
-*   **Self-Contained Dependencies:** Includes a batch script to create a local Python virtual environment (`.venv`) and install all necessary libraries.
-*   **Portable FFmpeg (Windows):** Bundles `ffmpeg.exe` for audio extraction on Windows, so no system-wide installation is needed.
+- **Automatic Transcription:** Transcribes audio from various video/audio formats into text.
+- **Subtitle Generation:** Creates `.srt` subtitle files with accurate timestamps.
+- **CPU Optimized:** Uses `faster-whisper` with `int8` quantization for efficient performance on standard CPUs.
+- **Cross-Platform:** Designed to run on both Windows and macOS.
+- **Self-Contained Dependencies:** Includes a batch script to create a local Python virtual environment (`.venv`) and install all necessary libraries.
+- **Portable FFmpeg (Windows):** Bundles `ffmpeg.exe` for audio extraction on Windows, so no system-wide installation is needed.
 
 ### Project Structure
 
@@ -130,8 +130,8 @@ Subtitle_Generator_Tool/
     python -m venv .venv
     ```
 3.  **Activate the environment:**
-    *   Windows: `.venv\Scripts\activate`
-    *   macOS/Linux: `source .venv/bin/activate`
+    - Windows: `.venv\Scripts\activate`
+    - macOS/Linux: `source .venv/bin/activate`
 4.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
